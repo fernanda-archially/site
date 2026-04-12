@@ -1,0 +1,1890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARCHIALLY — Your Architectural & Design Ally, Anywhere</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #080808;
+  --off-black: #111111;
+  --card-bg: #141414;
+  --border: #222222;
+  --lime: #C5F135;
+  --lime-dim: rgba(197, 241, 53, 0.12);
+  --white: #FFFFFF;
+  --grey: #888888;
+  --light-grey: #CCCCCC;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ===== CUSTOM CURSOR ===== */
+.cursor {
+  position: fixed;
+  width: 10px; height: 10px;
+  background: var(--lime);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease;
+}
+.cursor-ring {
+  position: fixed;
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(197,241,53,0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: all 0.15s ease;
+}
+body:hover .cursor { opacity: 1; }
+
+/* ===== NAV ===== */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 48px;
+  background: rgba(8,8,8,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 0.05em;
+  color: var(--white);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-logo .logo-mark {
+  width: 28px; height: 28px;
+  background: var(--lime);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.nav-logo .logo-mark svg { width: 14px; height: 14px; }
+
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grey);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--lime); }
+
+.nav-cta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--lime);
+  padding: 10px 20px;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.nav-cta:hover { opacity: 0.85; }
+
+/* ===== SECTIONS COMMON ===== */
+section { padding: 120px 48px; }
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 24px; height: 1px;
+  background: var(--lime);
+}
+
+.section-num {
+  font-family: var(--font-display);
+  font-size: 11px;
+  color: var(--border);
+  letter-spacing: 0.1em;
+}
+
+/* ===== FADE IN ANIMATION ===== */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ===== HERO ===== */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 140px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-grid-lines {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(197,241,53,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(197,241,53,0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+
+.hero-tag {
+  position: absolute;
+  top: 140px; right: 48px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--grey);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+
+.hero-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 24px;
+}
+
+.hero-headline {
+  font-family: var(--font-display);
+  font-size: clamp(72px, 10vw, 148px);
+  line-height: 0.92;
+  letter-spacing: -0.01em;
+  margin-bottom: 40px;
+  max-width: 1000px;
+}
+
+.hero-headline .accent { color: var(--lime); }
+
+.hero-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.hero-sub {
+  font-size: 17px;
+  color: var(--light-grey);
+  max-width: 480px;
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+.hero-sub strong { color: var(--white); font-weight: 600; }
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--lime);
+  padding: 14px 28px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-primary:hover { background: #d4ff40; transform: translateY(-2px); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+  border: 1px solid var(--border);
+  padding: 14px 28px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--lime); color: var(--lime); }
+
+.hero-scroll {
+  position: absolute;
+  bottom: 40px; left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--grey);
+  animation: bounce 2s infinite;
+}
+.hero-scroll .arrow { font-size: 16px; }
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ===== PROBLEM ===== */
+#problem {
+  background: var(--off-black);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.problem-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.problem-headline {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 5vw, 80px);
+  line-height: 0.95;
+  margin-bottom: 40px;
+}
+
+.problem-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.problem-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.problem-item:first-child { border-top: 1px solid var(--border); }
+
+.problem-icon {
+  width: 36px; height: 36px;
+  background: var(--lime-dim);
+  border: 1px solid rgba(197,241,53,0.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 14px;
+}
+
+.problem-text strong {
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.problem-text p {
+  font-size: 14px;
+  color: var(--grey);
+  font-weight: 300;
+}
+
+.solution-box {
+  background: var(--lime);
+  color: var(--black);
+  padding: 48px;
+}
+
+.solution-box .solution-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  opacity: 0.6;
+}
+
+.solution-box h3 {
+  font-family: var(--font-display);
+  font-size: 52px;
+  line-height: 0.95;
+  margin-bottom: 24px;
+}
+
+.solution-box p {
+  font-size: 15px;
+  line-height: 1.65;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+/* ===== ABOUT / CV ===== */
+#about { max-width: 100%; }
+
+.about-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.about-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 80px;
+  align-items: start;
+}
+
+.about-headline {
+  font-family: var(--font-display);
+  font-size: clamp(56px, 6vw, 96px);
+  line-height: 0.92;
+}
+
+.about-intro {
+  padding-top: 16px;
+}
+
+.about-intro p {
+  font-size: 17px;
+  color: var(--light-grey);
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+.about-intro p:last-child { margin-bottom: 0; }
+
+.about-intro strong { color: var(--white); font-weight: 600; }
+
+/* Timeline */
+.cv-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 72px;
+}
+
+.cv-item {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 40px;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+
+.cv-item:first-child { border-top: 1px solid var(--border); }
+
+.cv-period {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--lime);
+  letter-spacing: 0.05em;
+  padding-top: 4px;
+}
+
+.cv-content h4 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.cv-content .cv-org {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--grey);
+  letter-spacing: 0.05em;
+  margin-bottom: 10px;
+}
+
+.cv-content p {
+  font-size: 14px;
+  color: var(--light-grey);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.cv-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--lime-dim);
+  color: var(--lime);
+  border: 1px solid rgba(197,241,53,0.2);
+  padding: 3px 8px;
+  margin-top: 8px;
+  margin-right: 6px;
+}
+
+/* Stats row */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 72px;
+}
+
+.stat-item {
+  background: var(--card-bg);
+  padding: 32px 28px;
+}
+
+.stat-num {
+  font-family: var(--font-display);
+  font-size: 52px;
+  color: var(--lime);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+
+/* Languages */
+.languages-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.lang-chip {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 8px 18px;
+  border: 1px solid var(--border);
+  color: var(--light-grey);
+  transition: all 0.2s;
+}
+
+.lang-chip.primary {
+  background: var(--lime);
+  color: var(--black);
+  border-color: var(--lime);
+  font-weight: 600;
+}
+
+.lang-chip:not(.primary):hover {
+  border-color: var(--lime);
+  color: var(--lime);
+}
+
+/* ===== SERVICES ===== */
+#services {
+  background: var(--off-black);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.services-inner { max-width: 1200px; margin: 0 auto; }
+
+.services-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 72px;
+  align-items: end;
+}
+
+.services-headline {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 6vw, 88px);
+  line-height: 0.92;
+}
+
+.services-sub {
+  font-size: 16px;
+  color: var(--grey);
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-bottom: 80px;
+}
+
+.service-card {
+  background: var(--black);
+  padding: 36px 32px;
+  transition: background 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--lime);
+  transition: width 0.3s ease;
+}
+
+.service-card:hover { background: var(--card-bg); }
+.service-card:hover::after { width: 100%; }
+
+.service-num {
+  font-family: var(--font-display);
+  font-size: 48px;
+  color: var(--border);
+  line-height: 1;
+  margin-bottom: 20px;
+  transition: color 0.3s;
+}
+
+.service-card:hover .service-num { color: var(--lime); }
+
+.service-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.service-tools {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--lime);
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+}
+
+.service-desc {
+  font-size: 14px;
+  color: var(--grey);
+  font-weight: 300;
+  line-height: 1.65;
+}
+
+/* Method */
+.method-box {
+  background: var(--lime);
+  color: var(--black);
+  padding: 56px;
+}
+
+.method-box .method-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 20px;
+}
+
+.method-box h3 {
+  font-family: var(--font-display);
+  font-size: 52px;
+  line-height: 0.95;
+  margin-bottom: 40px;
+}
+
+.method-steps {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+
+.method-step { }
+
+.method-step-num {
+  font-family: var(--font-display);
+  font-size: 36px;
+  opacity: 0.25;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.method-step p {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* ===== PORTFOLIO ===== */
+#portfolio { }
+
+.portfolio-inner { max-width: 1200px; margin: 0 auto; }
+
+.portfolio-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 56px;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.portfolio-headline {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 6vw, 88px);
+  line-height: 0.92;
+}
+
+.portfolio-meta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--grey);
+  letter-spacing: 0.1em;
+  text-align: right;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.project-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.project-card:hover { border-color: var(--lime); }
+
+/* Image area — replace .project-img with actual <img> */
+.project-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  background: var(--off-black);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Placeholder gradient — remove once real images are added */
+.project-img .placeholder {
+  position: absolute;
+  inset: 0;
+  opacity: 0.4;
+}
+
+.project-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.project-card:hover .project-img img { transform: scale(1.04); }
+
+.project-img-placeholder-text {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--grey);
+  z-index: 1;
+}
+
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8,8,8,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.project-card:hover .project-overlay { opacity: 1; }
+
+.project-overlay-text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--lime);
+}
+
+.project-info {
+  padding: 20px 22px;
+}
+
+.project-name {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.project-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.project-type {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+
+.project-country {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--lime);
+}
+
+.project-result {
+  font-size: 13px;
+  color: var(--grey);
+  font-weight: 300;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+
+.portfolio-cta {
+  text-align: center;
+  margin-top: 48px;
+}
+
+.portfolio-cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--lime);
+  border: 1px solid rgba(197,241,53,0.3);
+  padding: 14px 28px;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.portfolio-cta a:hover {
+  background: var(--lime-dim);
+  border-color: var(--lime);
+}
+
+/* ===== TESTIMONIALS ===== */
+#testimonials {
+  background: var(--off-black);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.testimonials-inner { max-width: 1200px; margin: 0 auto; }
+
+.testimonials-headline {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 5vw, 80px);
+  line-height: 0.92;
+  margin-bottom: 56px;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.testimonial-card {
+  background: var(--black);
+  border: 1px solid var(--border);
+  padding: 40px;
+  position: relative;
+}
+
+.testimonial-card::before {
+  content: '"';
+  font-family: var(--font-display);
+  font-size: 96px;
+  color: var(--lime);
+  opacity: 0.15;
+  position: absolute;
+  top: 16px; left: 32px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.testimonial-text {
+  font-size: 16px;
+  line-height: 1.7;
+  font-weight: 300;
+  color: var(--light-grey);
+  margin-bottom: 28px;
+  font-style: italic;
+}
+
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.author-avatar {
+  width: 40px; height: 40px;
+  background: var(--lime-dim);
+  border: 1px solid rgba(197,241,53,0.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--lime);
+  flex-shrink: 0;
+}
+
+.author-info strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.author-info span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--grey);
+  letter-spacing: 0.05em;
+}
+
+.testimonial-placeholder {
+  background: var(--card-bg);
+  border: 1px dashed var(--border);
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 200px;
+  text-align: center;
+}
+
+.testimonial-placeholder p {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--border);
+}
+
+/* ===== CONTACT ===== */
+#contact { }
+
+.contact-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.contact-left { }
+
+.contact-headline {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 6vw, 88px);
+  line-height: 0.92;
+  margin-bottom: 28px;
+}
+
+.contact-sub {
+  font-size: 16px;
+  color: var(--grey);
+  font-weight: 300;
+  line-height: 1.7;
+  margin-bottom: 48px;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.contact-detail {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--white);
+  transition: color 0.2s;
+}
+
+.contact-detail:first-child { border-top: 1px solid var(--border); }
+.contact-detail:hover { color: var(--lime); }
+
+.contact-detail-icon {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--grey);
+  width: 64px;
+  flex-shrink: 0;
+}
+
+.contact-detail-value {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+/* Form */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 15px;
+  padding: 14px 16px;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  cursor: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(--lime); }
+
+.form-group textarea { resize: vertical; min-height: 120px; }
+
+.form-group select option { background: var(--card-bg); }
+
+.form-submit {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--lime);
+  border: none;
+  padding: 16px 32px;
+  cursor: none;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-start;
+}
+
+.form-submit:hover { background: #d4ff40; transform: translateY(-2px); }
+
+/* ===== FOOTER ===== */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 32px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  color: var(--white);
+}
+
+.footer-copy {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--grey);
+  text-align: center;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-links a {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover { color: var(--lime); }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  section { padding: 80px 24px; }
+  nav { padding: 16px 24px; }
+  .nav-links { display: none; }
+  .problem-inner { grid-template-columns: 1fr; gap: 40px; }
+  .about-header { grid-template-columns: 1fr; gap: 32px; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .services-header { grid-template-columns: 1fr; gap: 24px; }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .method-steps { grid-template-columns: repeat(2, 1fr); }
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+  .testimonials-grid { grid-template-columns: 1fr; }
+  .contact-inner { grid-template-columns: 1fr; gap: 48px; }
+  .hero-actions { flex-direction: column; align-items: flex-start; }
+  footer { flex-direction: column; text-align: center; }
+  .cv-item { grid-template-columns: 1fr; gap: 8px; }
+}
+
+@media (max-width: 600px) {
+  .services-grid { grid-template-columns: 1fr; }
+  .portfolio-grid { grid-template-columns: 1fr; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .method-steps { grid-template-columns: 1fr; }
+  .method-box { padding: 36px 24px; }
+  .solution-box { padding: 36px 28px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Custom Cursor -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">
+    <div class="logo-mark">
+      <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="7" y1="1" x2="7" y2="13" stroke="#080808" stroke-width="2"/>
+        <line x1="1" y1="7" x2="13" y2="7" stroke="#080808" stroke-width="2"/>
+      </svg>
+    </div>
+    ARCHIALLY
+  </a>
+  <ul class="nav-links">
+    <li><a href="#problem">Problem</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#testimonials">Feedback</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Let's talk →</a>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section id="hero">
+  <div class="hero-grid-lines"></div>
+  <div class="hero-tag">archially.co — 2025</div>
+
+  <p class="hero-eyebrow reveal">Your architectural & design ally, anywhere.</p>
+
+  <h1 class="hero-headline reveal reveal-delay-1">
+    YOUR TEAM<br>NEEDS AN<br><span class="accent">EXTRA HAND.</span>
+  </h1>
+
+  <div class="hero-bottom reveal reveal-delay-2">
+    <p class="hero-sub">
+      I'm <strong>Fernanda</strong> — architect, interior designer, and remote collaborator
+      with experience across <strong>Europe, the U.S., and Canada.</strong>
+      I plug into small studios fast, with zero drama.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Start a conversation →</a>
+      <a href="#portfolio" class="btn-secondary">See my work</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <span class="arrow">↓</span>
+  </div>
+</section>
+
+<!-- ===== PROBLEM & SOLUTION ===== -->
+<section id="problem">
+  <div class="problem-inner">
+    <div>
+      <p class="section-label reveal"><span class="section-num">01</span> The Problem</p>
+      <h2 class="problem-headline reveal reveal-delay-1">
+        YOUR PROJECTS<br>GROW FASTER<br>THAN YOUR TEAM.
+      </h2>
+
+      <ul class="problem-list">
+        <li class="problem-item reveal reveal-delay-2">
+          <div class="problem-icon">📋</div>
+          <div class="problem-text">
+            <strong>New projects keep coming in</strong>
+            <p>New renovations, new deadlines, exciting possibilities — but your bandwidth is already maxed out.</p>
+          </div>
+        </li>
+        <li class="problem-item reveal reveal-delay-3">
+          <div class="problem-icon">⏱️</div>
+          <div class="problem-text">
+            <strong>No time to onboard anyone</strong>
+            <p>You can't spend days explaining your system or redoing work that missed the brief.</p>
+          </div>
+        </li>
+        <li class="problem-item reveal reveal-delay-4">
+          <div class="problem-icon">🎯</div>
+          <div class="problem-text">
+            <strong>Finding the right person is a headache</strong>
+            <p>You need someone who understands how small studios work and can just plug in — and go.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="solution-box reveal reveal-delay-2">
+      <p class="solution-label">02 — The Solution</p>
+      <h3>AND THIS IS EXACTLY WHERE I THRIVE.</h3>
+      <p>
+        I specialize in integrating quickly and effectively into small interior design and architecture studios —
+        remotely, efficiently, and with minimal friction. I adapt to your tools, your timelines, your rhythm.
+        From concept to detailing, I fill the gaps smoothly.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT / CV ===== -->
+<section id="about">
+  <div class="about-inner">
+    <p class="section-label reveal"><span class="section-num">03</span> About Fernanda</p>
+
+    <div class="about-header">
+      <h2 class="about-headline reveal reveal-delay-1">
+        THE PATH<br>THAT LED<br>ME HERE.
+      </h2>
+      <div class="about-intro reveal reveal-delay-2">
+        <p>
+          I'm an architect and interior designer with over a decade of training and more than
+          five years of <strong>international remote experience</strong> — working with studios
+          across Europe, the U.S., and Canada.
+        </p>
+        <p>
+          I'm currently completing a <strong>PhD in Architecture</strong> while working part-time
+          with a Swiss studio. I've built my entire practice around being a reliable, low-friction
+          collaborator for small teams who need to move fast without sacrificing quality.
+        </p>
+        <p>
+          I speak the technical language — and the professional language —
+          that you and your team use.
+        </p>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row reveal">
+      <div class="stat-item">
+        <div class="stat-num">+20</div>
+        <div class="stat-label">Projects delivered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">+6</div>
+        <div class="stat-label">Countries worked in</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">+50</div>
+        <div class="stat-label">Students tutored</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">5</div>
+        <div class="stat-label">Languages</div>
+      </div>
+    </div>
+
+    <!-- CV Timeline -->
+    <div class="cv-timeline">
+      <div class="cv-item reveal">
+        <div class="cv-period">2013 — 2023</div>
+        <div class="cv-content">
+          <h4>B.Arch + M.Arch in Architecture & Urban Planning</h4>
+          <p class="cv-org">UFJF | UFMG | UFRJ — Brazil</p>
+          <p>Double degree in architecture with a focus on residential, commercial, and institutional projects. Graduated with experience across multiple Brazilian institutions, developing a strong technical and conceptual foundation.</p>
+          <span class="cv-tag">Residential</span>
+          <span class="cv-tag">Commercial</span>
+          <span class="cv-tag">Institutional</span>
+        </div>
+      </div>
+
+      <div class="cv-item reveal">
+        <div class="cv-period">2018 — 2023</div>
+        <div class="cv-content">
+          <h4>Architectural & Interior Design Practice</h4>
+          <p class="cv-org">Brazil (Multiple Studios)</p>
+          <p>Worked on +20 projects spanning residential architecture, renovations, and interior design. Developed fluency in project management, client coordination, and construction documentation.</p>
+          <span class="cv-tag">+20 Projects</span>
+          <span class="cv-tag">ArchiCAD</span>
+          <span class="cv-tag">AutoCAD</span>
+        </div>
+      </div>
+
+      <div class="cv-item reveal">
+        <div class="cv-period">2020 — Present</div>
+        <div class="cv-content">
+          <h4>Private Architecture Software Tutor</h4>
+          <p class="cv-org">Online — Global</p>
+          <p>Taught ArchiCAD, SketchUp, and related design software to +50 architecture students and professionals across multiple countries. This role deepened my expertise and communication skills across technical contexts.</p>
+          <span class="cv-tag">ArchiCAD</span>
+          <span class="cv-tag">SketchUp</span>
+          <span class="cv-tag">+50 Students</span>
+        </div>
+      </div>
+
+      <div class="cv-item reveal">
+        <div class="cv-period">2021 — Present</div>
+        <div class="cv-content">
+          <h4>International Remote Collaborator</h4>
+          <p class="cv-org">Switzerland, USA, Canada & other markets</p>
+          <p>Delivered architectural support, BIM modeling, interior design documentation, and project coordination to studios in 6+ countries. Primary tools: ArchiCAD. Clients include Sofia Clara Interiors & Gardens (Lausanne) and others via referral platforms.</p>
+          <span class="cv-tag">Remote</span>
+          <span class="cv-tag">BIM</span>
+          <span class="cv-tag">6+ Countries</span>
+        </div>
+      </div>
+
+      <div class="cv-item reveal">
+        <div class="cv-period">2022 — 2026</div>
+        <div class="cv-content">
+          <h4>PhD in Architecture (ongoing)</h4>
+          <p class="cv-org">Brazil</p>
+          <p>Pursuing doctoral research while maintaining an active practice — a deliberate choice that keeps my academic knowledge current and directly applicable to real projects.</p>
+          <span class="cv-tag">Research</span>
+          <span class="cv-tag">Expected 2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Languages -->
+    <div class="reveal">
+      <p class="section-label" style="margin-bottom: 20px;"><span class="section-num">Languages</span></p>
+      <div class="languages-row">
+        <div class="lang-chip primary">🇧🇷 Portuguese</div>
+        <div class="lang-chip primary">🇬🇧 English</div>
+        <div class="lang-chip primary">🇩🇪 German</div>
+        <div class="lang-chip">🇪🇸 Spanish</div>
+        <div class="lang-chip">🇫🇷 French</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SERVICES & METHOD ===== -->
+<section id="services">
+  <div class="services-inner">
+    <p class="section-label reveal"><span class="section-num">04</span> Services & Method</p>
+
+    <div class="services-header">
+      <h2 class="services-headline reveal reveal-delay-1">
+        YOUR EXTRA<br>PAIR OF<br>HANDS.
+      </h2>
+      <p class="services-sub reveal reveal-delay-2">
+        Modular services, flexible hours, no drama.
+        Need help modeling, detailing, coordinating or organizing?
+        Here's how I can support your team remotely — from a single task to a full project phase.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-num">01</div>
+        <div class="service-title">BIM Modeling & Drawings</div>
+        <div class="service-tools">ArchiCAD</div>
+        <p class="service-desc">Full BIM model development, floor plans, sections, elevations, and coordinated drawing sets — built to your studio's standards from day one.</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-num">02</div>
+        <div class="service-title">Construction Docs & Approval Sets</div>
+        <div class="service-tools">AutoCAD / ArchiCAD</div>
+        <p class="service-desc">Technical documentation packages for construction and legal approval — precise, complete, and ready to submit.</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-num">03</div>
+        <div class="service-title">3D Modeling & Rendering</div>
+        <div class="service-tools">SketchUp + Lumion</div>
+        <p class="service-desc">High-quality 3D models and realistic renders aligned with your studio's visual identity and client presentation standards.</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-num">04</div>
+        <div class="service-title">Concept Design & Presentations</div>
+        <div class="service-tools">Varies by studio</div>
+        <p class="service-desc">From concept development to client-ready design books — structured, compelling, and on-brand. I adapt to your presentation format and software stack.</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-num">05</div>
+        <div class="service-title">Moodboards, Specs & Sourcing</div>
+        <div class="service-tools">Interior Design Support</div>
+        <p class="service-desc">Material selections, product sourcing, specification sheets, and procurement lists — including reusable templates that save time on future projects.</p>
+      </div>
+
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-num">06</div>
+        <div class="service-title">Project Management & Coordination</div>
+        <div class="service-tools">Notion / Trello / Your tool</div>
+        <p class="service-desc">Task tracking, timeline management, file organization, and team coordination — I adapt to your existing system or help you build a better one.</p>
+      </div>
+    </div>
+
+    <!-- Method Box -->
+    <div class="method-box reveal">
+      <p class="method-label">How I integrate — The Method</p>
+      <h3>WHAT MAKES IT SMOOTH ISN'T LUCK. IT'S METHOD.</h3>
+      <div class="method-steps">
+        <div class="method-step">
+          <div class="method-step-num">01</div>
+          <p>I map your current tools and platforms</p>
+        </div>
+        <div class="method-step">
+          <div class="method-step-num">02</div>
+          <p>I match your file structure, naming logic, and team tone</p>
+        </div>
+        <div class="method-step">
+          <div class="method-step-num">03</div>
+          <p>I understand roles and responsibilities from day one</p>
+        </div>
+        <div class="method-step">
+          <div class="method-step-num">04</div>
+          <p>I jump between design, production, and coordination as needed</p>
+        </div>
+        <div class="method-step">
+          <div class="method-step-num">05</div>
+          <p>Feedback-ready: I'm used to iterative processes, and I actually enjoy them</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PORTFOLIO ===== -->
+<section id="portfolio">
+  <div class="portfolio-inner">
+    <p class="section-label reveal"><span class="section-num">05</span> Selected Work</p>
+
+    <div class="portfolio-header">
+      <h2 class="portfolio-headline reveal reveal-delay-1">
+        RECENT<br>PROJECTS.
+      </h2>
+      <div class="portfolio-meta reveal reveal-delay-2">
+        12 projects<br>
+        6 countries<br>
+        residential · commercial · interiors
+      </div>
+    </div>
+
+    <div class="portfolio-grid">
+
+      <!-- PROJECT 1 — EUPHORBIA -->
+      <!-- TO ADD IMAGE: replace the .project-img div with: <div class="project-img"><img src="your-image.jpg" alt="Euphorbia"></div> -->
+      <div class="project-card reveal reveal-delay-1">
+        <div class="project-img" style="background: linear-gradient(135deg, #1a2a1a, #2d4a1e);">
+          <span class="project-img-placeholder-text">Add image here</span>
+          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">EUPHORBIA</div>
+          <div class="project-meta">
+            <span class="project-type">Commercial fit-out</span>
+            <span class="project-country">🇨🇭 Switzerland</span>
+          </div>
+          <p class="project-result">Delivered remotely, fully integrated with studio workflow — 8 months</p>
+        </div>
+      </div>
+
+      <!-- PROJECT 2 — TOURNESOL -->
+      <div class="project-card reveal reveal-delay-2">
+        <div class="project-img" style="background: linear-gradient(135deg, #2a2a1a, #4a421e);">
+          <span class="project-img-placeholder-text">Add image here</span>
+          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">TOURNESOL</div>
+          <div class="project-meta">
+            <span class="project-type">Interior design</span>
+            <span class="project-country">🇨🇭 Switzerland</span>
+          </div>
+          <p class="project-result">Interior concept to final presentation — 8 months, zero rework</p>
+        </div>
+      </div>
+
+      <!-- PROJECT 3 — HUDSON RD -->
+      <div class="project-card reveal reveal-delay-3">
+        <div class="project-img" style="background: linear-gradient(135deg, #1a1a2a, #1e2a4a);">
+          <span class="project-img-placeholder-text">Add image here</span>
+          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">HUDSON RD.</div>
+          <div class="project-meta">
+            <span class="project-type">Renovation</span>
+            <span class="project-country">🇺🇸 USA</span>
+          </div>
+          <p class="project-result">Renovation drawings coordinated directly with GC on-site — 3 months</p>
+        </div>
+      </div>
+
+      <!-- PROJECTS 4–12 — PLACEHOLDERS -->
+      <!-- Duplicate and fill these with your real projects -->
+
+      <div class="project-card reveal reveal-delay-1">
+        <div class="project-img" style="background: linear-gradient(135deg, #2a1a1a, #4a1e1e);">
+          <span class="project-img-placeholder-text">Add image here</span>
+          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">PROJECT 04</div>
+          <div class="project-meta">
+            <span class="project-type">Project type</span>
+            <span class="project-country">Country</span>
+          </div>
+          <p class="project-result">Add a one-line result here.</p>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-2">
+        <div class="project-img" style="background: linear-gradient(135deg, #1a2a2a, #1e4a42);">
+          <span class="project-img-placeholder-text">Add image here</span>
+          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">PROJECT 05</div>
+          <div class="project-meta">
+            <span class="project-type">Project type</span>
+            <span class="project-country">Country</span>
+          </div>
+          <p class="project-result">Add a one-line result here.</p>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-3">
+        <div class="project-img" style="background: linear-gradient(135deg, #2a1a2a, #421e4a);">
+          <span class="project-img-placeholder-text">Add image here</span>
+          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">PROJECT 06</div>
+          <div class="project-meta">
+            <span class="project-type">Project type</span>
+            <span class="project-country">Country</span>
+          </div>
+          <p class="project-result">Add a one-line result here.</p>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-1">
+        <div class="project-img" style="background: linear-gradient(135deg, #1e2a1a, #2a4a1e);">
+          <span class="project-img-placeholder-text">Add image here</span>
+          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">PROJECT 07</div>
+          <div class="project-meta">
+            <span class="project-type">Project type</span>
+            <span class="project-country">Country</span>
+          </div>
+          <p class="project-result">Add a one-line result here.</p>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-2">
+        <div class="project-img" style="background: linear-gradient(135deg, #2a2a1e, #4a421e);">
+          <span class="project-img-placeholder-text">Add image here</span>
+          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">PROJECT 08</div>
+          <div class="project-meta">
+            <span class="project-type">Project type</span>
+            <span class="project-country">Country</span>
+          </div>
+          <p class="project-result">Add a one-line result here.</p>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-3">
+        <div class="project-img" style="background: linear-gradient(135deg, #1a1e2a, #1e2a4a);">
+          <span class="project-img-placeholder-text">Add image here</span>
+          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">PROJECT 09</div>
+          <div class="project-meta">
+            <span class="project-type">Project type</span>
+            <span class="project-country">Country</span>
+          </div>
+          <p class="project-result">Add a one-line result here.</p>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-1">
+        <div class="project-img" style="background: linear-gradient(135deg, #2a1e1a, #4a2a1e);">
+          <span class="project-img-placeholder-text">Add image here</span>
+          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">PROJECT 10</div>
+          <div class="project-meta">
+            <span class="project-type">Project type</span>
+            <span class="project-country">Country</span>
+          </div>
+          <p class="project-result">Add a one-line result here.</p>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-2">
+        <div class="project-img" style="background: linear-gradient(135deg, #1a2a1e, #1e4a2a);">
+          <span class="project-img-placeholder-text">Add image here</span>
+          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">PROJECT 11</div>
+          <div class="project-meta">
+            <span class="project-type">Project type</span>
+            <span class="project-country">Country</span>
+          </div>
+          <p class="project-result">Add a one-line result here.</p>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-3">
+        <div class="project-img" style="background: linear-gradient(135deg, #2a1a1e, #4a1e2a);">
+          <span class="project-img-placeholder-text">Add image here</span>
+          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+        </div>
+        <div class="project-info">
+          <div class="project-name">PROJECT 12</div>
+          <div class="project-meta">
+            <span class="project-type">Project type</span>
+            <span class="project-country">Country</span>
+          </div>
+          <p class="project-result">Add a one-line result here.</p>
+        </div>
+      </div>
+
+    </div><!-- /portfolio-grid -->
+
+    <div class="portfolio-cta reveal">
+      <!-- Replace # with your Google Drive PDF link -->
+      <a href="#" target="_blank">View full portfolio PDF (60 pages) →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section id="testimonials">
+  <div class="testimonials-inner">
+    <p class="section-label reveal"><span class="section-num">06</span> What Clients Say</p>
+    <h2 class="testimonials-headline reveal reveal-delay-1">
+      WORKING<br>TOGETHER.
+    </h2>
+
+    <div class="testimonials-grid">
+
+      <!-- REAL TESTIMONIAL — fill in when you receive one -->
+      <div class="testimonial-card reveal reveal-delay-1">
+        <p class="testimonial-text">
+          "Katrin needed support on an ongoing interior design project. Fernanda delivered
+          high-quality, realistic visuals aligned with our studio's style, along with a
+          structured procurement list that evolved into a reusable template for future projects.
+          Clear communication, on-time delivery, and zero rework."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">K</div>
+          <div class="author-info">
+            <strong>Katrin</strong>
+            <span>Interior Design Studio — Switzerland</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PLACEHOLDER — replace with real testimonial when available -->
+      <div class="testimonial-placeholder reveal reveal-delay-2">
+        <p>More feedback coming soon.</p>
+        <p style="color: var(--grey); margin-top: 4px;">Worked with Fernanda? Get in touch.</p>
+      </div>
+
+      <div class="testimonial-placeholder reveal reveal-delay-3">
+        <p>Placeholder — add your next testimonial here.</p>
+      </div>
+
+      <div class="testimonial-placeholder reveal reveal-delay-4">
+        <p>Placeholder — add your next testimonial here.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <p class="section-label reveal"><span class="section-num">07</span> Get in Touch</p>
+      <h2 class="contact-headline reveal reveal-delay-1">
+        I'M READY<br>WHEN YOU<br>ARE.
+      </h2>
+      <p class="contact-sub reveal reveal-delay-2">
+        Tell me about your project, your deadlines, and what's on your plate.
+        I'll help you lighten the load — and move forward with confidence.
+      </p>
+
+      <div class="contact-details reveal reveal-delay-3">
+        <a class="contact-detail" href="mailto:fernanda.archially@gmail.com">
+          <span class="contact-detail-icon">Email</span>
+          <span class="contact-detail-value">fernanda.archially@gmail.com</span>
+        </a>
+        <a class="contact-detail" href="https://linkedin.com/in/fernanda-freitas-archially" target="_blank">
+          <span class="contact-detail-icon">LinkedIn</span>
+          <span class="contact-detail-value">/fernanda-freitas-archially</span>
+        </a>
+        <a class="contact-detail" href="https://archially.co" target="_blank">
+          <span class="contact-detail-icon">Website</span>
+          <span class="contact-detail-value">archially.co</span>
+        </a>
+        <a class="contact-detail" href="https://wa.me/5532984029992" target="_blank">
+          <span class="contact-detail-icon">WhatsApp</span>
+          <span class="contact-detail-value">+55 (32) 98402-9992</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Contact Form — sends via mailto. For form backend, replace action with Formspree URL -->
+    <form class="contact-form reveal reveal-delay-2" id="contactForm">
+      <div class="form-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Studio owner / designer" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="your@studio.com" required>
+      </div>
+      <div class="form-group">
+        <label for="service">What do you need?</label>
+        <select id="service" name="service">
+          <option value="">Select a service</option>
+          <option>BIM Modeling & Drawings</option>
+          <option>Construction Docs & Approval Sets</option>
+          <option>3D Modeling & Rendering</option>
+          <option>Concept Design & Presentations</option>
+          <option>Moodboards, Specs & Sourcing</option>
+          <option>Project Management</option>
+          <option>Not sure yet — let's talk</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">Tell me about your project</label>
+        <textarea id="message" name="message" placeholder="Deadline, scope, tools you use, what's piling up…" required></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send message →</button>
+    </form>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">ARCHIALLY</div>
+  <p class="footer-copy">© 2025 Fernanda Freitas · your architectural & design ally, anywhere.</p>
+  <div class="footer-links">
+    <a href="mailto:fernanda.archially@gmail.com">Email</a>
+    <a href="https://linkedin.com/in/fernanda-freitas-archially" target="_blank">LinkedIn</a>
+    <a href="#" target="_blank">Portfolio PDF</a>
+  </div>
+</footer>
+
+<!-- ===== JS ===== -->
+<script>
+// Custom cursor
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+});
+
+function animateRing() {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+animateRing();
+
+// Cursor scale on hover
+document.querySelectorAll('a, button, .project-card').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cursorRing.style.transform = 'translate(-50%, -50%) scale(1.8)';
+    cursor.style.transform = 'translate(-50%, -50%) scale(0.5)';
+  });
+  el.addEventListener('mouseleave', () => {
+    cursorRing.style.transform = 'translate(-50%, -50%) scale(1)';
+    cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+  });
+});
+
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+reveals.forEach(el => observer.observe(el));
+
+// Nav scroll effect
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    nav.style.borderBottomColor = 'rgba(197,241,53,0.15)';
+  } else {
+    nav.style.borderBottomColor = 'var(--border)';
+  }
+});
+
+// Contact form — mailto fallback
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const service = document.getElementById('service').value;
+  const message = document.getElementById('message').value;
+
+  const subject = encodeURIComponent(`ARCHIALLY inquiry — ${service || 'General'}`);
+  const body = encodeURIComponent(
+    `Hi Fernanda,\n\nName: ${name}\nEmail: ${email}\nService: ${service}\n\n${message}`
+  );
+
+  window.location.href = `mailto:fernanda.archially@gmail.com?subject=${subject}&body=${body}`;
+});
+</script>
+
+</body>
+</html>
