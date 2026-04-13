@@ -4,6 +4,76 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ARCHIALLY — Your Architectural & Design Ally, Anywhere</title>
+
+<!-- ===== SEO: CORE META ===== -->
+<meta name="description" content="ARCHIALLY is a remote architectural & design support studio for small European and American interior design studios. BIM modeling, construction documents, 3D rendering, concept design, and project management — delivered remotely, anywhere.">
+<meta name="keywords" content="architectural freelancer, BIM modeling, ArchiCAD, interior design support, construction documents, remote architect, freelance architect Europe, DACH interior design, 3D rendering, project management architecture">
+<meta name="author" content="Fernanda Freitas">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://archially.co">
+
+<!-- ===== SEO: OPEN GRAPH (LinkedIn, Facebook, WhatsApp previews) ===== -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://archially.co">
+<meta property="og:title" content="ARCHIALLY — Your Architectural & Design Ally, Anywhere">
+<meta property="og:description" content="Remote architectural support for interior design studios. BIM modeling, construction docs, 3D rendering & project management — delivered anywhere in Europe and North America (USA).">
+<meta property="og:image" content="https://archially.co/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="ARCHIALLY">
+
+<!-- ===== SEO: TWITTER / X CARD ===== -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ARCHIALLY — Your Architectural & Design Ally, Anywhere">
+<meta name="twitter:description" content="Remote architectural and interior design support for interior design and architecture studios. BIM modeling, construction docs, 3D rendering & project management.">
+<meta name="twitter:image" content="https://archially.co/og-image.jpg">
+
+<!-- ===== SEO: JSON-LD STRUCTURED DATA ===== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "ARCHIALLY",
+  "url": "https://archially.co",
+  "logo": "https://archially.co/og-image.jpg",
+  "description": "Remote architectural and design support studio for small interior design studios in Europe. Services include BIM modeling, construction documentation, 3D rendering, concept design, and project management.",
+  "founder": {
+    "@type": "Person",
+    "name": "Fernanda Freitas",
+    "jobTitle": "Architect & BIM Specialist",
+    "email": "fernanda.archially@gmail.com",
+    "sameAs": "https://linkedin.com/in/fernanda-freitas-archially"
+  },
+  "areaServed": ["Europe", "Switzerland", "Germany", "Austria", "United States", "Canada"],
+  "serviceType": ["BIM Modeling", "Architectural Drafting", "3D Rendering", "Construction Documentation", "Project Management", "Concept Design"],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "fernanda.archially@gmail.com",
+    "contactType": "customer service"
+  }
+}
+</script>
+
+<!-- ===== GOOGLE ANALYTICS 4 — CONSENT MODE V2 (GDPR compliant) ===== -->
+<!-- Default: tracking DENIED until user accepts the cookie banner -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'analytics_storage':  'denied',
+    'ad_storage':         'denied',
+    'ad_user_data':       'denied',
+    'ad_personalization': 'denied',
+    'wait_for_update':    500
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-P1Y1WKE48W"></script>
+<script>
+  gtag('js', new Date());
+  gtag('config', 'G-P1Y1WKE48W');
+</script>
+
 <!-- Favicon: símbolo + da marca ARCHIALLY -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23C5F135'/%3E%3Cline x1='16' y1='6' x2='16' y2='26' stroke='%23080808' stroke-width='4' stroke-linecap='round'/%3E%3Cline x1='6' y1='16' x2='26' y2='16' stroke='%23080808' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1470,9 +1540,109 @@ footer {
   transition: background 0.2s;
 }
 #overlayClose:hover { background: #d4ff40; }
+
+/* ===== COOKIE CONSENT BANNER (GDPR) ===== */
+#cookieBanner {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  width: calc(100% - 64px);
+  max-width: 860px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 28px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  flex-wrap: wrap;
+  box-shadow: 0 8px 48px rgba(0,0,0,0.6);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+#cookieBanner.hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(16px);
+  pointer-events: none;
+}
+.cookie-text {
+  flex: 1;
+  min-width: 220px;
+}
+.cookie-text strong {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 6px;
+}
+.cookie-text p {
+  font-size: 13px;
+  color: var(--grey);
+  line-height: 1.55;
+  font-weight: 300;
+}
+.cookie-text p a {
+  color: var(--light-grey);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.cookie-actions {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+.cookie-btn-accept {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--lime);
+  border: none;
+  padding: 12px 24px;
+  cursor: none;
+  transition: opacity 0.2s;
+}
+.cookie-btn-accept:hover { opacity: 0.85; }
+.cookie-btn-decline {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grey);
+  background: transparent;
+  border: 1px solid var(--border);
+  padding: 12px 24px;
+  cursor: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+.cookie-btn-decline:hover { border-color: var(--grey); color: var(--light-grey); }
+@media (max-width: 600px) {
+  #cookieBanner { bottom: 0; left: 0; right: 0; width: 100%; transform: none; border-left: none; border-right: none; border-bottom: none; }
+  #cookieBanner.hidden { transform: translateY(16px); }
+  .cookie-actions { width: 100%; }
+  .cookie-btn-accept, .cookie-btn-decline { flex: 1; text-align: center; }
+}
 </style>
 </head>
 <body>
+<!-- ===== COOKIE CONSENT BANNER (GDPR / EEE compliant) ===== -->
+<div id="cookieBanner" role="dialog" aria-label="Cookie consent">
+  <div class="cookie-text">
+    <strong>🍪 Cookie Notice</strong>
+    <p>This site uses analytics cookies (Google Analytics) to understand how visitors interact with the content. No data is collected without your consent. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Learn more</a>.</p>
+  </div>
+  <div class="cookie-actions">
+    <button class="cookie-btn-decline" id="cookieDecline">Decline</button>
+    <button class="cookie-btn-accept" id="cookieAccept">Accept cookies</button>
+  </div>
+</div>
+
 <!-- Success Overlay -->
 <div id="successOverlay">
   <div id="overlayBox">
@@ -1595,7 +1765,7 @@ footer {
       </div>
       <div class="about-right reveal reveal-delay-3">
         <div class="about-photo-wrap reveal reveal-delay-1" style="background: transparent; border: none;">
-          <img src="Fernanda-Profile.png" alt="Fernanda Freitas" style="object-fit: contain; object-position: center;">
+          <img src="Fernanda-Profile.png" alt="Remote architect and interior designer" style="object-fit: contain; object-position: center;">
         </div>
         <div class="about-intro">
           <p>
@@ -1833,7 +2003,7 @@ footer {
       <a class="project-card reveal reveal-delay-1" href="https://www.behance.net/gallery/247060951/Euphorbia-2025" target="_blank" rel="noopener">
         <div class="project-img" style="background: linear-gradient(135deg, #1a2a1a, #2d4a1e);">
           <span class="project-img-placeholder-text">Add image here</span>
-          <img src="Euphorbia-01.jpg" alt="Project image">
+          <img src="Euphorbia-01.jpg" alt="Euphorbia commercial interior with modern seating area, warm lighting, and botanical elements creating a welcoming retail environment">
           <div class="project-overlay"><span class="project-overlay-text">View on Behance →</span></div>
         </div>
         <div class="project-info">
@@ -1851,7 +2021,7 @@ footer {
       <a class="project-card reveal reveal-delay-2" href="https://www.behance.net/gallery/247061451/Tournesol-2024" target="_blank" rel="noopener">
         <div class="project-img" style="background: linear-gradient(135deg, #2a2a1a, #4a421e);">
           <span class="project-img-placeholder-text">Add image here</span>
-          <img src="Tournesol-01.png" alt="Project image">
+          <img src="Tournesol-01.png" alt="Tournesol residential interior renovation featuring warm neutral tones, modern furnishings, and soft natural lighting in a renovated period apartment, creating an inviting and sophisticated living space">
           <div class="project-overlay"><span class="project-overlay-text">View on Behance →</span></div>
         </div>
         <div class="project-info">
@@ -1869,7 +2039,7 @@ footer {
       <a class="project-card reveal reveal-delay-3" href="https://www.behance.net/gallery/201450655/Hudson-Rd-2023" target="_blank" rel="noopener">
         <div class="project-img" style="background: linear-gradient(135deg, #1a1a2a, #1e2a4a);">
           <span class="project-img-placeholder-text">Add image here</span>
-          <img src="Hudson-01.jpg" alt="Project image">
+            <img src="Hudson-01.jpg" alt="Hudson Road residential renovation featuring architectural floor plans with detailed measurements, multiple room layouts including bedrooms and bathrooms, construction-ready technical drawings in black and white on a light background, showcase of coordinated renovation documentation">
           <div class="project-overlay"><span class="project-overlay-text">View on Behance →</span></div>
         </div>
         <div class="project-info">
@@ -1888,7 +2058,7 @@ footer {
       <a class="project-card reveal reveal-delay-1" href="https://www.behance.net/gallery/247061131/Pilates-Studio-2025" target="_blank" rel="noopener">
         <div class="project-img" style="background: linear-gradient(135deg, #2a1a1a, #4a1e1e);">
           <span class="project-img-placeholder-text">Add image here</span>
-          <img src="Kor-01.png" alt="Project image">
+            <img src="Kor-01.png" alt="KOR Pilates studio interior featuring a modern reception area with wooden accents, minimalist design aesthetic, and welcoming atmosphere for a commercial fitness space in Switzerland">
           <div class="project-overlay"><span class="project-overlay-text">View on Behance →</span></div>
         </div>
         <div class="project-info">
@@ -1904,7 +2074,7 @@ footer {
       <a class="project-card reveal reveal-delay-2" href="https://www.behance.net/gallery/247060633/Panorama-2023" target="_blank" rel="noopener">
         <div class="project-img" style="background: linear-gradient(135deg, #1a2a2a, #1e4a42);">
           <span class="project-img-placeholder-text">Add image here</span>
-          <img src="Panorama-01.png" alt="Project image">
+          <img src="Panorama-01.png" alt="Panorama residential renovation featuring modern interior design with clean lines, neutral color palette, and contemporary furnishings creating a bright, welcoming living space in a residential renovation project">
           <div class="project-overlay"><span class="project-overlay-text">View on Behance →</span></div>
         </div>
         <div class="project-info">
@@ -1920,7 +2090,7 @@ footer {
       <a class="project-card reveal reveal-delay-3" href="https://www.behance.net/gallery/247061297/Rosa-2025" target="_blank" rel="noopener">
         <div class="project-img" style="background: linear-gradient(135deg, #2a1a2a, #421e4a);">
           <span class="project-img-placeholder-text">Add image here</span>
-          <img src="Rosa-01.png" alt="Project image">
+            <img src="Rosa-01.png" alt="Rosa residential interior featuring soft pink and neutral tones, modern minimalist furnishings, and warm ambient lighting creating a serene and sophisticated bedroom or living space in a Swiss residential renovation">
           <div class="project-overlay"><span class="project-overlay-text">View on Behance →</span></div>
         </div>
         <div class="project-info">
@@ -1936,7 +2106,7 @@ footer {
       <a class="project-card reveal reveal-delay-1" href="https://www.behance.net/gallery/247060451/Shinola-2025" target="_blank" rel="noopener">
         <div class="project-img" style="background: linear-gradient(135deg, #1e2a1a, #2a4a1e);">
           <span class="project-img-placeholder-text">Add image here</span>
-          <img src="Shinola-01.png" alt="Project image">
+          <img src="Shinola-01.png" alt="Shinola commercial interior featuring modern retail display with sleek fixtures, warm ambient lighting, and contemporary furnishings creating an upscale shopping environment. Fire-proofing construction details visible in technical specifications, demonstrating compliance with commercial building regulations for this USA-based project.">
           <div class="project-overlay"><span class="project-overlay-text">View on Behance →</span></div>
         </div>
         <div class="project-info">
@@ -1952,7 +2122,7 @@ footer {
       <a class="project-card reveal reveal-delay-2" href="https://www.behance.net/gallery/201453297/Trautmannsdorf-2023" target="_blank" rel="noopener">
         <div class="project-img" style="background: linear-gradient(135deg, #2a2a1e, #4a421e);">
           <span class="project-img-placeholder-text">Add image here</span>
-          <img src="Trautmannsdorf-01.png" alt="Project image">
+            <img src="Trautmannsdorf-01.png" alt="Trautmannsdorf residential interior renovation featuring elegant living spaces with warm neutral tones, modern furnishings, and sophisticated lighting design throughout a luxury home renovation project in Austria">
           <div class="project-overlay"><span class="project-overlay-text">View on Behance →</span></div>
         </div>
         <div class="project-info">
@@ -1968,7 +2138,7 @@ footer {
       <a class="project-card reveal reveal-delay-3" href="https://www.behance.net/gallery/138247739/Area-de-lazer-2021" target="_blank" rel="noopener">
         <div class="project-img" style="background: linear-gradient(135deg, #1a1e2a, #1e2a4a);">
           <span class="project-img-placeholder-text">Add image here</span>
-          <img src="Coutinho-01.jpg" alt="Project image">
+            <img src="Coutinho-01.jpg" alt="Coutinho outdoor leisure area featuring a modern pool surrounded by lush landscaping, wooden decking, and comfortable seating areas creating a serene relaxation space with views designed for both leisure and remote work productivity in Brazil">
           <div class="project-overlay"><span class="project-overlay-text">View on Behance →</span></div>
         </div>
         <div class="project-info">
@@ -1985,7 +2155,7 @@ footer {
 
     <div class="portfolio-cta reveal">
       <!-- Replace # with your Google Drive PDF link -->
-      <a href="https://drive.google.com/file/d/1-c0SsZ4p0-8iFly84V37mtww9y-4T5ph/view?usp=sharing" target="_blank">View full portfolio PDF (60 pages) →</a>
+      <a href="https://drive.google.com/file/d/1-c0SsZ4p0-8iFly84V37mtww9y-4T5ph/view?usp=sharing" target="_blank">View full portfolio →</a>
     </div>
 
   </div>
@@ -2164,7 +2334,7 @@ footer {
   <div class="footer-brand">ARCHIALLY</div>
   <p class="footer-copy">© Fernanda Freitas · your architectural & design ally, anywhere.</p>
   <div class="footer-links">
-    <a href="mailto:fernanda.archially@gmail.com">fernanda.archially@gmail.com</a>
+    <a href="mailto:fernanda.archially@gmail.com">E-mail</a>
     <a href="https://wa.me/5532984029992" target="_blank">WhatsApp</a>
     <a href="https://linkedin.com/in/fernanda-freitas-archially" target="_blank">LinkedIn</a>
     <a href="https://archially.co" target="_blank">archially.co</a>
@@ -2266,6 +2436,43 @@ window.addEventListener('scroll', () => {
     nav.style.borderBottomColor = 'var(--border)';
   }
 });
+
+// ===== COOKIE CONSENT — GDPR =====
+(function() {
+  const banner   = document.getElementById('cookieBanner');
+  const btnAccept  = document.getElementById('cookieAccept');
+  const btnDecline = document.getElementById('cookieDecline');
+  const STORAGE_KEY = 'archially_cookie_consent';
+
+  function grantConsent() {
+    gtag('consent', 'update', {
+      'analytics_storage': 'granted'
+    });
+    localStorage.setItem(STORAGE_KEY, 'granted');
+    banner.classList.add('hidden');
+  }
+
+  function denyConsent() {
+    gtag('consent', 'update', {
+      'analytics_storage': 'denied'
+    });
+    localStorage.setItem(STORAGE_KEY, 'denied');
+    banner.classList.add('hidden');
+  }
+
+  // If user already chose, respect their decision silently
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved === 'granted') {
+    grantConsent();
+    banner.classList.add('hidden');
+  } else if (saved === 'denied') {
+    banner.classList.add('hidden');
+  }
+  // Otherwise banner stays visible
+
+  btnAccept.addEventListener('click', grantConsent);
+  btnDecline.addEventListener('click', denyConsent);
+})();
 
 // Contact form — mailto fallback
 // Hide project image placeholder text when image loads
