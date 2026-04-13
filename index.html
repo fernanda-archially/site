@@ -1577,7 +1577,7 @@ footer {
       <div class="cv-item reveal">
         <div class="cv-period">2013 — 2023</div>
         <div class="cv-content">
-          <h4>B.Arch + M.Arch in Architecture & Urban Planning</h4>
+          <h4>Bachelor & Master in Architecture & Urban Planning</h4>
           <p class="cv-org">UFJF | UFMG | UFRJ — Brazil</p>
           <p>Double degree in architecture. Graduated with experience across multiple Brazilian and international institutions, such as Bauhaus Universität, Universidade do Algarve and CRESSON - Grenoble, where I developed a strong technical and conceptual foundation.</p>
           <span class="cv-tag">Research</span>
@@ -2049,7 +2049,7 @@ footer {
     </div>
 
     <!-- Contact Form — sends via mailto. For form backend, replace action with Formspree URL -->
-    <form class="contact-form reveal reveal-delay-3" id="contactForm">
+    <form class="contact-form reveal reveal-delay-3" id="contactForm" action="https://formspree.io/f/xlgarvee" method="POST">
       <div class="form-row">
         <div class="form-group">
           <label for="name">Your Name</label>
@@ -2167,20 +2167,6 @@ window.addEventListener('scroll', () => {
 });
 
 // Contact form — mailto fallback
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const name = document.getElementById('name').value;
-  const email = document.getElementById('email').value;
-  const service = document.getElementById('service').value;
-  const message = document.getElementById('message').value;
-
-  const subject = encodeURIComponent(`ARCHIALLY inquiry — ${service || 'General'}`);
-  const body = encodeURIComponent(
-    `Hi Fernanda,\n\nName: ${name}\nEmail: ${email}\nService: ${service}\n\n${message}`
-  );
-
-  window.location.href = `mailto:fernanda.archially@gmail.com?subject=${subject}&body=${body}`;
-});
 // Hide project image placeholder text when image loads
 document.querySelectorAll('.project-img').forEach(function(container) {
   const img = container.querySelector('img');
