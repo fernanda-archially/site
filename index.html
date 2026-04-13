@@ -4,11 +4,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ARCHIALLY — Your Architectural & Design Ally, Anywhere</title>
+<!-- Favicon: símbolo + da marca ARCHIALLY -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23C5F135'/%3E%3Cline x1='16' y1='6' x2='16' y2='26' stroke='%23080808' stroke-width='4' stroke-linecap='round'/%3E%3Cline x1='6' y1='16' x2='26' y2='16' stroke='%23080808' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <style>
+/*
+  ===== AKZIDENZ-GROTESK SETUP =====
+  Esta é uma fonte comercial. Para ativá-la:
+  1. Coloque o arquivo AkzidenzGrotesk-Bold.woff2 na mesma pasta do HTML
+  2. O @font-face abaixo já aponta para ele automaticamente
+  3. Enquanto o arquivo não estiver presente, o fallback será Arial Black (visualmente próximo)
+*/
+@font-face {
+  font-family: 'AkzidenzGrotesk';
+  src: url('AkzidenzGrotesk-Bold.woff2') format('woff2'),
+       url('AkzidenzGrotesk-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ===== RESET & BASE ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -22,8 +40,8 @@
   --white: #FFFFFF;
   --grey: #888888;
   --light-grey: #CCCCCC;
-  --font-display: 'Bebas Neue', sans-serif;
-  --font-body: 'Outfit', sans-serif;
+  --font-display: 'AkzidenzGrotesk', 'Arial Black', 'Helvetica Neue', sans-serif;
+  --font-body: 'Quicksand', sans-serif;
   --font-mono: 'DM Mono', monospace;
 }
 
@@ -211,11 +229,13 @@ section { padding: 120px 48px; }
 
 .hero-headline {
   font-family: var(--font-display);
-  font-size: clamp(72px, 10vw, 148px);
-  line-height: 0.92;
-  letter-spacing: -0.01em;
+  font-size: clamp(54px, 8vw, 118px);
+  line-height: 0.9;
+  letter-spacing: -0.03em;
   margin-bottom: 40px;
   max-width: 1000px;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .hero-headline .accent { color: var(--lime); }
@@ -317,8 +337,11 @@ section { padding: 120px 48px; }
 
 .problem-headline {
   font-family: var(--font-display);
-  font-size: clamp(48px, 5vw, 80px);
+  font-size: clamp(38px, 4.5vw, 70px);
   line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-weight: 700;
   margin-bottom: 40px;
 }
 
@@ -379,8 +402,11 @@ section { padding: 120px 48px; }
 
 .solution-box h3 {
   font-family: var(--font-display);
-  font-size: 52px;
+  font-size: clamp(34px, 4vw, 50px);
   line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-weight: 700;
   margin-bottom: 24px;
 }
 
@@ -407,10 +433,19 @@ section { padding: 120px 48px; }
   align-items: start;
 }
 
+.about-right {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
 .about-headline {
   font-family: var(--font-display);
-  font-size: clamp(56px, 6vw, 96px);
+  font-size: clamp(44px, 5.5vw, 84px);
   line-height: 0.92;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .about-intro {
@@ -572,8 +607,11 @@ section { padding: 120px 48px; }
 
 .services-headline {
   font-family: var(--font-display);
-  font-size: clamp(52px, 6vw, 88px);
+  font-size: clamp(42px, 5.5vw, 78px);
   line-height: 0.92;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .services-sub {
@@ -662,8 +700,11 @@ section { padding: 120px 48px; }
 
 .method-box h3 {
   font-family: var(--font-display);
-  font-size: 52px;
+  font-size: clamp(34px, 4vw, 50px);
   line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-weight: 700;
   margin-bottom: 40px;
 }
 
@@ -705,8 +746,11 @@ section { padding: 120px 48px; }
 
 .portfolio-headline {
   font-family: var(--font-display);
-  font-size: clamp(52px, 6vw, 88px);
+  font-size: clamp(42px, 5.5vw, 78px);
   line-height: 0.92;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-weight: 700;
 }
 
 .portfolio-meta {
@@ -724,12 +768,15 @@ section { padding: 120px 48px; }
 }
 
 .project-card {
+  display: block;
   position: relative;
   overflow: hidden;
   background: var(--card-bg);
   border: 1px solid var(--border);
   cursor: pointer;
   transition: border-color 0.3s;
+  text-decoration: none;
+  color: inherit;
 }
 
 .project-card:hover { border-color: var(--lime); }
@@ -869,8 +916,11 @@ section { padding: 120px 48px; }
 
 .testimonials-headline {
   font-family: var(--font-display);
-  font-size: clamp(48px, 5vw, 80px);
+  font-size: clamp(38px, 4.5vw, 70px);
   line-height: 0.92;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-weight: 700;
   margin-bottom: 56px;
 }
 
@@ -963,71 +1013,41 @@ section { padding: 120px 48px; }
 /* ===== CONTACT ===== */
 #contact { }
 
-.contact-inner {
-  max-width: 1200px;
+.contact-inner-simple {
+  max-width: 800px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
 }
 
-.contact-left { }
+.contact-top { margin-bottom: 40px; }
 
 .contact-headline {
   font-family: var(--font-display);
-  font-size: clamp(52px, 6vw, 88px);
+  font-size: clamp(42px, 5.5vw, 78px);
   line-height: 0.92;
-  margin-bottom: 28px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 16px;
+  margin-top: 12px;
 }
 
 .contact-sub {
   font-size: 16px;
   color: var(--grey);
-  font-weight: 300;
-  line-height: 1.7;
-  margin-bottom: 48px;
-}
-
-.contact-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.contact-detail {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 18px 0;
-  border-bottom: 1px solid var(--border);
-  text-decoration: none;
-  color: var(--white);
-  transition: color 0.2s;
-}
-
-.contact-detail:first-child { border-top: 1px solid var(--border); }
-.contact-detail:hover { color: var(--lime); }
-
-.contact-detail-icon {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--grey);
-  width: 64px;
-  flex-shrink: 0;
-}
-
-.contact-detail-value {
-  font-size: 15px;
   font-weight: 400;
+  line-height: 1.7;
 }
 
 /* Form */
 .contact-form {
   display: flex;
   flex-direction: column;
+  gap: 20px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 
@@ -1064,7 +1084,7 @@ section { padding: 120px 48px; }
 .form-group select:focus,
 .form-group textarea:focus { border-color: var(--lime); }
 
-.form-group textarea { resize: vertical; min-height: 120px; }
+.form-group textarea { resize: vertical; min-height: 130px; }
 
 .form-group select option { background: var(--card-bg); }
 
@@ -1086,6 +1106,48 @@ section { padding: 120px 48px; }
 }
 
 .form-submit:hover { background: #d4ff40; transform: translateY(-2px); }
+
+.form-submit {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--lime);
+  border: none;
+  padding: 16px 32px;
+  cursor: none;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  align-self: flex-start;
+}
+
+.form-submit:hover { background: #d4ff40; transform: translateY(-2px); }
+
+/* WhatsApp CTA button */
+.whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+  border: 1px solid var(--border);
+  padding: 14px 24px;
+  text-decoration: none;
+  margin-top: 8px;
+  transition: all 0.2s;
+  align-self: flex-start;
+}
+
+.whatsapp-btn svg { color: #25D366; flex-shrink: 0; }
+.whatsapp-btn:hover { border-color: #25D366; color: #25D366; }
+
+@media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
 
 /* ===== FOOTER ===== */
 footer {
@@ -1130,7 +1192,202 @@ footer {
 
 .footer-links a:hover { color: var(--lime); }
 
-/* ===== RESPONSIVE ===== */
+/* ===== PRICING STANDALONE (dark, before method) ===== */
+.pricing-standalone {
+  background: var(--black);
+  border: 1px solid var(--border);
+  margin-bottom: 1px;
+}
+
+.pricing-standalone-inner {
+  padding: 56px;
+}
+
+.pricing-headline-wrap {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.pricing-arrow-circle-dark {
+  width: 64px; height: 64px;
+  background: var(--lime);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 24px;
+  color: var(--black);
+  font-weight: 700;
+  font-family: var(--font-body);
+}
+
+.pricing-headline-text-dark {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4.5vw, 62px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.pricing-sub-dark {
+  font-size: 15px;
+  color: var(--grey);
+  font-weight: 400;
+  line-height: 1.65;
+  margin-bottom: 36px;
+  max-width: 560px;
+  font-family: var(--font-body);
+}
+
+.pricing-cards-dark {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.pricing-card-dark {
+  background: var(--card-bg);
+  padding: 32px;
+  transition: background 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-card-dark::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0; height: 2px;
+  background: var(--lime);
+  transition: width 0.3s ease;
+}
+
+.pricing-card-dark:hover { background: #1a1a1a; }
+.pricing-card-dark:hover::after { width: 100%; }
+
+.pricing-card-label-dark {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 12px;
+}
+
+.pricing-card-title-dark {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 12px;
+  line-height: 1;
+}
+
+.pricing-card-desc-dark {
+  font-size: 14px;
+  color: var(--grey);
+  font-weight: 400;
+  line-height: 1.65;
+  font-family: var(--font-body);
+}
+
+.pricing-card-examples {
+  margin-top: 16px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.pricing-pill-dark {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  color: var(--grey);
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.pricing-card-dark:hover .pricing-pill-dark {
+  border-color: rgba(197,241,53,0.3);
+  color: var(--lime);
+}
+
+@media (max-width: 900px) {
+  .pricing-standalone-inner { padding: 36px 24px; }
+  .pricing-cards-dark { grid-template-columns: 1fr; }
+  .about-right { flex-direction: row; align-items: flex-start; gap: 20px; }
+  .about-photo-wrap { width: 120px; }
+}
+
+/* ===== ABOUT PHOTO ===== */
+.about-photo-wrap {
+  width: 160px;
+  aspect-ratio: 3/4;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.about-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-photo-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.about-photo-placeholder-icon {
+  width: 48px; height: 48px;
+  border: 1.5px solid var(--border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+}
+
+.about-photo-placeholder p {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--grey);
+}
+
+.about-photo-tag {
+  position: absolute;
+  bottom: 16px; left: 16px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--lime);
+  background: rgba(8,8,8,0.8);
+  padding: 6px 10px;
+}
+
+@media (max-width: 900px) {
+  .pricing-cards { grid-template-columns: 1fr; }
+  .about-photo-wrap { max-width: 100%; aspect-ratio: 4/3; }
+}
 @media (max-width: 900px) {
   section { padding: 80px 24px; }
   nav { padding: 16px 24px; }
@@ -1189,7 +1446,7 @@ footer {
 <!-- ===== HERO ===== -->
 <section id="hero">
   <div class="hero-grid-lines"></div>
-  <div class="hero-tag">archially.co — 2025</div>
+  <div class="hero-tag">archially.co</div>
 
   <p class="hero-eyebrow reveal">Your architectural & design ally, anywhere.</p>
 
@@ -1199,7 +1456,7 @@ footer {
 
   <div class="hero-bottom reveal reveal-delay-2">
     <p class="hero-sub">
-      I'm <strong>Fernanda</strong> — architect, interior designer, and remote collaborator
+      And I'm here to help. I'm <strong>Fernanda</strong> — architect, interior designer, and remote collaborator
       with experience across <strong>Europe, the U.S., and Canada.</strong>
       I plug into small studios fast, with zero drama.
     </p>
@@ -1267,24 +1524,35 @@ footer {
     <p class="section-label reveal"><span class="section-num">03</span> About Fernanda</p>
 
     <div class="about-header">
-      <h2 class="about-headline reveal reveal-delay-1">
-        THE PATH<br>THAT LED<br>ME HERE.
-      </h2>
-      <div class="about-intro reveal reveal-delay-2">
-        <p>
-          I'm an architect and interior designer with over a decade of training and more than
-          five years of <strong>international remote experience</strong> — working with studios
-          across Europe, the U.S., and Canada.
-        </p>
-        <p>
-          I'm currently completing a <strong>PhD in Architecture</strong> while working part-time
-          with a Swiss studio. I've built my entire practice around being a reliable, low-friction
-          collaborator for small teams who need to move fast without sacrificing quality.
-        </p>
-        <p>
-          I speak the technical language — and the professional language —
-          that you and your team use.
-        </p>
+      <div class="about-left reveal reveal-delay-1">
+        <h2 class="about-headline reveal reveal-delay-2">
+          THE PATH<br>THAT LED<br>ME HERE.
+        </h2>
+      </div>
+      <div class="about-right reveal reveal-delay-3">
+        <div class="about-photo-wrap reveal reveal-delay-1">
+          <img src="Fernanda-Profile.png" alt="Fernanda Freitas">
+          <div class="about-photo-placeholder">
+            <div class="about-photo-placeholder-icon">👤</div>
+            <p>Add photo here</p>
+          </div>
+        </div>
+        <div class="about-intro">
+          <p>
+            I'm an architect and interior designer with over a decade of working experience and 
+            +5 years of <strong>international remote work</strong> — working with studios
+            across Europe, the U.S., and Canada.
+          </p>
+          <p>
+            I also teached architecture softwares for over 50 students across the globe. 
+            I've built my entire practice around being a reliable, low-friction
+            collaborator for small teams who need to move fast without sacrificing quality.
+          </p>
+          <p>
+            I speak the technical language — and the professional language —
+            that you and your team use.
+          </p>
+        </div>
       </div>
     </div>
 
@@ -1315,10 +1583,11 @@ footer {
         <div class="cv-content">
           <h4>B.Arch + M.Arch in Architecture & Urban Planning</h4>
           <p class="cv-org">UFJF | UFMG | UFRJ — Brazil</p>
-          <p>Double degree in architecture with a focus on residential, commercial, and institutional projects. Graduated with experience across multiple Brazilian institutions, developing a strong technical and conceptual foundation.</p>
-          <span class="cv-tag">Residential</span>
-          <span class="cv-tag">Commercial</span>
-          <span class="cv-tag">Institutional</span>
+          <p>Double degree in architecture. Graduated with experience across multiple Brazilian and international institutions, such as Bauhaus Universität, Universidade do Algarve and CRESSON - Grenoble, where I developed a strong technical and conceptual foundation.</p>
+          <span class="cv-tag">Research</span>
+          <span class="cv-tag">Heritage & Renovation</span>
+          <span class="cv-tag">Concept Development</span>
+          <span class="cv-tag">Culture & Perception Studies</span>
         </div>
       </div>
 
@@ -1327,21 +1596,24 @@ footer {
         <div class="cv-content">
           <h4>Architectural & Interior Design Practice</h4>
           <p class="cv-org">Brazil (Multiple Studios)</p>
-          <p>Worked on +20 projects spanning residential architecture, renovations, and interior design. Developed fluency in project management, client coordination, and construction documentation.</p>
+          <p>Worked on +20 projects spanning residential, commercial and institutional architecture, renovations and interior design. Developed fluency in project management, client coordination, and construction documentation.</p>
           <span class="cv-tag">+20 Projects</span>
           <span class="cv-tag">ArchiCAD</span>
           <span class="cv-tag">AutoCAD</span>
+          <span class="cv-tag">SketchUp</span>
         </div>
       </div>
 
       <div class="cv-item reveal">
-        <div class="cv-period">2020 — Present</div>
+        <div class="cv-period">2020 — 2025</div>
         <div class="cv-content">
           <h4>Private Architecture Software Tutor</h4>
           <p class="cv-org">Online — Global</p>
-          <p>Taught ArchiCAD, SketchUp, and related design software to +50 architecture students and professionals across multiple countries. This role deepened my expertise and communication skills across technical contexts.</p>
+          <p>Taught AutoCAD, ArchiCAD, SketchUp, Lumion, Adobe Suite and related design software to +50 architecture students and professionals across multiple countries. This role deepened my expertise and communication skills across technical contexts.</p>
           <span class="cv-tag">ArchiCAD</span>
           <span class="cv-tag">SketchUp</span>
+          <span class="cv-tag">AutoCAD</span>
+          <span class="cv-tag">Lumion</span>
           <span class="cv-tag">+50 Students</span>
         </div>
       </div>
@@ -1351,21 +1623,23 @@ footer {
         <div class="cv-content">
           <h4>International Remote Collaborator</h4>
           <p class="cv-org">Switzerland, USA, Canada & other markets</p>
-          <p>Delivered architectural support, BIM modeling, interior design documentation, and project coordination to studios in 6+ countries. Primary tools: ArchiCAD. Clients include Sofia Clara Interiors & Gardens (Lausanne) and others via referral platforms.</p>
+          <p>Delivered architectural support, BIM modeling, interior design documentation, and project coordination to studios in 6+ countries. Clients include Sofia Clara Interiors & Gardens, Taylor + Taylor and others via referral platforms.</p>
           <span class="cv-tag">Remote</span>
           <span class="cv-tag">BIM</span>
+          <span class="cv-tag">CAD</span>
+          <span class="cv-tag">3D Modeling</span>
           <span class="cv-tag">6+ Countries</span>
         </div>
       </div>
 
       <div class="cv-item reveal">
-        <div class="cv-period">2022 — 2026</div>
+        <div class="cv-period">2023</div>
         <div class="cv-content">
           <h4>PhD in Architecture (ongoing)</h4>
           <p class="cv-org">Brazil</p>
           <p>Pursuing doctoral research while maintaining an active practice — a deliberate choice that keeps my academic knowledge current and directly applicable to real projects.</p>
           <span class="cv-tag">Research</span>
-          <span class="cv-tag">Expected 2026</span>
+          <span class="cv-tag">Culture & Remote Work</span>
         </div>
       </div>
     </div>
@@ -1374,11 +1648,11 @@ footer {
     <div class="reveal">
       <p class="section-label" style="margin-bottom: 20px;"><span class="section-num">Languages</span></p>
       <div class="languages-row">
-        <div class="lang-chip primary">🇧🇷 Portuguese</div>
-        <div class="lang-chip primary">🇬🇧 English</div>
-        <div class="lang-chip primary">🇩🇪 German</div>
-        <div class="lang-chip">🇪🇸 Spanish</div>
-        <div class="lang-chip">🇫🇷 French</div>
+        <div class="lang-chip primary">🇧🇷  Portuguese</div>
+        <div class="lang-chip primary">🇬🇧  English</div>
+        <div class="lang-chip primary">🇩🇪  German</div>
+        <div class="lang-chip">🇪🇸  Spanish</div>
+        <div class="lang-chip">🇫🇷  French</div>
       </div>
     </div>
   </div>
@@ -1425,7 +1699,7 @@ footer {
       <div class="service-card reveal reveal-delay-1">
         <div class="service-num">04</div>
         <div class="service-title">Concept Design & Presentations</div>
-        <div class="service-tools">Varies by studio</div>
+        <div class="service-tools">Photoshop / Illustrator / InDesign / Canva</div>
         <p class="service-desc">From concept development to client-ready design books — structured, compelling, and on-brand. I adapt to your presentation format and software stack.</p>
       </div>
 
@@ -1439,15 +1713,17 @@ footer {
       <div class="service-card reveal reveal-delay-3">
         <div class="service-num">06</div>
         <div class="service-title">Project Management & Coordination</div>
-        <div class="service-tools">Notion / Trello / Your tool</div>
+        <div class="service-tools">Notion / Trello / Slack</div>
         <p class="service-desc">Task tracking, timeline management, file organization, and team coordination — I adapt to your existing system or help you build a better one.</p>
       </div>
+    </div>
+
     </div>
 
     <!-- Method Box -->
     <div class="method-box reveal">
       <p class="method-label">How I integrate — The Method</p>
-      <h3>WHAT MAKES IT SMOOTH ISN'T LUCK. IT'S METHOD.</h3>
+      <h3>WHAT MAKES IT SMOOTH ISN'T JUST EXPERIENCE. IT'S METHOD.</h3>
       <div class="method-steps">
         <div class="method-step">
           <div class="method-step-num">01</div>
@@ -1467,7 +1743,7 @@ footer {
         </div>
         <div class="method-step">
           <div class="method-step-num">05</div>
-          <p>Feedback-ready: I'm used to iterative processes, and I actually enjoy them</p>
+          <p>Feedback-ready: I'm used to interactive processes, and I actually enjoy them</p>
         </div>
       </div>
     </div>
@@ -1484,7 +1760,7 @@ footer {
         RECENT<br>PROJECTS.
       </h2>
       <div class="portfolio-meta reveal reveal-delay-2">
-        12 projects<br>
+        9 projects<br>
         6 countries<br>
         residential · commercial · interiors
       </div>
@@ -1493,197 +1769,154 @@ footer {
     <div class="portfolio-grid">
 
       <!-- PROJECT 1 — EUPHORBIA -->
-      <!-- TO ADD IMAGE: replace the .project-img div with: <div class="project-img"><img src="your-image.jpg" alt="Euphorbia"></div> -->
-      <div class="project-card reveal reveal-delay-1">
-        <div class="project-img" style="background: linear-gradient(135deg, #1a2a1a, #2d4a1e);">
+      <!-- Behance link: substitua # pelo link do projeto no Behance -->
+      <a class="project-card reveal reveal-delay-1" href="https://www.behance.net/gallery/247060951/Euphorbia-2025" target="_blank" rel="noopener">
+        <div class="Euphorbia-01.jpg" style="background: linear-gradient(135deg, #1a2a1a, #2d4a1e);">
           <span class="project-img-placeholder-text">Add image here</span>
-          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+          <div class="project-overlay"><span class="project-overlay-text">View on Behance →</span></div>
         </div>
         <div class="project-info">
           <div class="project-name">EUPHORBIA</div>
           <div class="project-meta">
             <span class="project-type">Commercial fit-out</span>
-            <span class="project-country">🇨🇭 Switzerland</span>
+            <span class="project-country">🇨🇭  Switzerland</span>
           </div>
-          <p class="project-result">Delivered remotely, fully integrated with studio workflow — 8 months</p>
+          <p class="project-result">From concept to final reveal, delivered remotely, fully integrated with studio workflow — 8 months</p>
         </div>
-      </div>
+      </a>
 
       <!-- PROJECT 2 — TOURNESOL -->
-      <div class="project-card reveal reveal-delay-2">
-        <div class="project-img" style="background: linear-gradient(135deg, #2a2a1a, #4a421e);">
+      <!-- Behance link: substitua # pelo link do projeto no Behance -->
+      <a class="project-card reveal reveal-delay-2" href="https://www.behance.net/gallery/247061451/Tournesol-2024" target="_blank" rel="noopener">
+        <div class="Tournesol-01."png style="background: linear-gradient(135deg, #2a2a1a, #4a421e);">
           <span class="project-img-placeholder-text">Add image here</span>
-          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+          <div class="project-overlay"><span class="project-overlay-text">View on Behance →</span></div>
         </div>
         <div class="project-info">
           <div class="project-name">TOURNESOL</div>
           <div class="project-meta">
             <span class="project-type">Interior design</span>
-            <span class="project-country">🇨🇭 Switzerland</span>
+            <span class="project-country">🇨🇭  Switzerland</span>
           </div>
-          <p class="project-result">Interior concept to final presentation — 8 months, zero rework</p>
+          <p class="project-result">Interior concept to final presentation of a residential renovation in a old building</p>
         </div>
-      </div>
+      </a>
 
       <!-- PROJECT 3 — HUDSON RD -->
-      <div class="project-card reveal reveal-delay-3">
-        <div class="project-img" style="background: linear-gradient(135deg, #1a1a2a, #1e2a4a);">
+      <!-- Behance link: substitua # pelo link do projeto no Behance -->
+      <a class="project-card reveal reveal-delay-3" href="https://www.behance.net/gallery/201450655/Hudson-Rd-2023" target="_blank" rel="noopener">
+        <div class="Hudson-01.jpg" style="background: linear-gradient(135deg, #1a1a2a, #1e2a4a);">
           <span class="project-img-placeholder-text">Add image here</span>
-          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+          <div class="project-overlay"><span class="project-overlay-text">View on Behance →</span></div>
         </div>
         <div class="project-info">
           <div class="project-name">HUDSON RD.</div>
           <div class="project-meta">
             <span class="project-type">Renovation</span>
-            <span class="project-country">🇺🇸 USA</span>
+            <span class="project-country">🇺🇸  USA</span>
           </div>
           <p class="project-result">Renovation drawings coordinated directly with GC on-site — 3 months</p>
         </div>
-      </div>
+      </a>
 
-      <!-- PROJECTS 4–12 — PLACEHOLDERS -->
-      <!-- Duplicate and fill these with your real projects -->
+      <!-- PROJECTS 4–9 — PLACEHOLDERS -->
+      <!-- Substitua href="#" pelo link do projeto no Behance em cada um -->
 
-      <div class="project-card reveal reveal-delay-1">
-        <div class="project-img" style="background: linear-gradient(135deg, #2a1a1a, #4a1e1e);">
+      <a class="project-card reveal reveal-delay-1" href="https://www.behance.net/gallery/247061131/Pilates-Studio-2025" target="_blank" rel="noopener">
+        <div class="Kor-01.png" style="background: linear-gradient(135deg, #2a1a1a, #4a1e1e);">
           <span class="project-img-placeholder-text">Add image here</span>
-          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+          <div class="project-overlay"><span class="project-overlay-text">View on Behance →</span></div>
         </div>
         <div class="project-info">
-          <div class="project-name">PROJECT 04</div>
+          <div class="project-name">KOR PILATES</div>
           <div class="project-meta">
-            <span class="project-type">Project type</span>
-            <span class="project-country">Country</span>
+            <span class="project-type">Commercial</span>
+            <span class="project-country">🇨🇭  Switzerland</span>
           </div>
-          <p class="project-result">Add a one-line result here.</p>
+          <p class="project-result">Concept and detailed custom furniture drawings and modeling delivered in 2 months</p>
         </div>
-      </div>
+      </a>
 
-      <div class="project-card reveal reveal-delay-2">
-        <div class="project-img" style="background: linear-gradient(135deg, #1a2a2a, #1e4a42);">
+      <a class="project-card reveal reveal-delay-2" href="https://www.behance.net/gallery/247060633/Panorama-2023" target="_blank" rel="noopener">
+        <div class="Panorama-01.png" style="background: linear-gradient(135deg, #1a2a2a, #1e4a42);">
           <span class="project-img-placeholder-text">Add image here</span>
-          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+          <div class="project-overlay"><span class="project-overlay-text">View on Behance →</span></div>
         </div>
         <div class="project-info">
-          <div class="project-name">PROJECT 05</div>
+          <div class="project-name">PANORAMA</div>
           <div class="project-meta">
-            <span class="project-type">Project type</span>
-            <span class="project-country">Country</span>
+            <span class="project-type">Residential</span>
+            <span class="project-country">🇺🇸  USA</span>
           </div>
-          <p class="project-result">Add a one-line result here.</p>
+          <p class="project-result">Detailed interior renovation using AutoCAD and AI rendering tools.</p>
         </div>
-      </div>
+      </a>
 
-      <div class="project-card reveal reveal-delay-3">
-        <div class="project-img" style="background: linear-gradient(135deg, #2a1a2a, #421e4a);">
+      <a class="project-card reveal reveal-delay-3" href="https://www.behance.net/gallery/247061297/Rosa-2025" target="_blank" rel="noopener">
+        <div class="Rosa-01.png" style="background: linear-gradient(135deg, #2a1a2a, #421e4a);">
           <span class="project-img-placeholder-text">Add image here</span>
-          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+          <div class="project-overlay"><span class="project-overlay-text">View on Behance →</span></div>
         </div>
         <div class="project-info">
-          <div class="project-name">PROJECT 06</div>
+          <div class="project-name">ROSA</div>
           <div class="project-meta">
-            <span class="project-type">Project type</span>
-            <span class="project-country">Country</span>
+            <span class="project-type">Residential</span>
+            <span class="project-country">🇨🇭  Switzerland</span>
           </div>
-          <p class="project-result">Add a one-line result here.</p>
+          <p class="project-result">Moodboards, custom furniture drawings and FF&E schedules delivered remotely aligned with on-site work</p>
         </div>
-      </div>
+      </a>
 
-      <div class="project-card reveal reveal-delay-1">
-        <div class="project-img" style="background: linear-gradient(135deg, #1e2a1a, #2a4a1e);">
+      <a class="project-card reveal reveal-delay-1" href="https://www.behance.net/gallery/247060451/Shinola-2025" target="_blank" rel="noopener">
+        <div class="Shinola-01.png" style="background: linear-gradient(135deg, #1e2a1a, #2a4a1e);">
           <span class="project-img-placeholder-text">Add image here</span>
-          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+          <div class="project-overlay"><span class="project-overlay-text">View on Behance →</span></div>
         </div>
         <div class="project-info">
-          <div class="project-name">PROJECT 07</div>
+          <div class="project-name">SHINOLA</div>
           <div class="project-meta">
-            <span class="project-type">Project type</span>
-            <span class="project-country">Country</span>
+            <span class="project-type">Commercial</span>
+            <span class="project-country">🇺🇸  USA</span>
           </div>
-          <p class="project-result">Add a one-line result here.</p>
+          <p class="project-result">Construction details to answer fire proofing regulations delivered in accordance with existing ArchiCAD files</p>
         </div>
-      </div>
+      </a>
 
-      <div class="project-card reveal reveal-delay-2">
-        <div class="project-img" style="background: linear-gradient(135deg, #2a2a1e, #4a421e);">
+      <a class="project-card reveal reveal-delay-2" href="https://www.behance.net/gallery/201453297/Trautmannsdorf-2023" target="_blank" rel="noopener">
+        <div class="Trautmannsdorf-01.png" style="background: linear-gradient(135deg, #2a2a1e, #4a421e);">
           <span class="project-img-placeholder-text">Add image here</span>
-          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+          <div class="project-overlay"><span class="project-overlay-text">View on Behance →</span></div>
         </div>
         <div class="project-info">
-          <div class="project-name">PROJECT 08</div>
+          <div class="project-name">TRAUTMANNSDORF</div>
           <div class="project-meta">
-            <span class="project-type">Project type</span>
-            <span class="project-country">Country</span>
+            <span class="project-type">Residential</span>
+            <span class="project-country">🇦🇹  Austria</span>
           </div>
-          <p class="project-result">Add a one-line result here.</p>
+          <p class="project-result">Full interior design renovation with Home Book presentation and schedules using SketchUp and InDesign</p>
         </div>
-      </div>
+      </a>
 
-      <div class="project-card reveal reveal-delay-3">
-        <div class="project-img" style="background: linear-gradient(135deg, #1a1e2a, #1e2a4a);">
+      <a class="project-card reveal reveal-delay-3" href="https://www.behance.net/gallery/138247739/Area-de-lazer-2021" target="_blank" rel="noopener">
+        <div class="Coutinho-01.jpg" style="background: linear-gradient(135deg, #1a1e2a, #1e2a4a);">
           <span class="project-img-placeholder-text">Add image here</span>
-          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
+          <div class="project-overlay"><span class="project-overlay-text">View on Behance →</span></div>
         </div>
         <div class="project-info">
-          <div class="project-name">PROJECT 09</div>
+          <div class="project-name">COUTINHO</div>
           <div class="project-meta">
-            <span class="project-type">Project type</span>
-            <span class="project-country">Country</span>
+            <span class="project-type">Landscape/Residential</span>
+            <span class="project-country">🇧🇷  Brazil</span>
           </div>
-          <p class="project-result">Add a one-line result here.</p>
+          <p class="project-result">Project delivered directly to final client, using sustainability and reusable materials as main concept.</p>
         </div>
-      </div>
-
-      <div class="project-card reveal reveal-delay-1">
-        <div class="project-img" style="background: linear-gradient(135deg, #2a1e1a, #4a2a1e);">
-          <span class="project-img-placeholder-text">Add image here</span>
-          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
-        </div>
-        <div class="project-info">
-          <div class="project-name">PROJECT 10</div>
-          <div class="project-meta">
-            <span class="project-type">Project type</span>
-            <span class="project-country">Country</span>
-          </div>
-          <p class="project-result">Add a one-line result here.</p>
-        </div>
-      </div>
-
-      <div class="project-card reveal reveal-delay-2">
-        <div class="project-img" style="background: linear-gradient(135deg, #1a2a1e, #1e4a2a);">
-          <span class="project-img-placeholder-text">Add image here</span>
-          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
-        </div>
-        <div class="project-info">
-          <div class="project-name">PROJECT 11</div>
-          <div class="project-meta">
-            <span class="project-type">Project type</span>
-            <span class="project-country">Country</span>
-          </div>
-          <p class="project-result">Add a one-line result here.</p>
-        </div>
-      </div>
-
-      <div class="project-card reveal reveal-delay-3">
-        <div class="project-img" style="background: linear-gradient(135deg, #2a1a1e, #4a1e2a);">
-          <span class="project-img-placeholder-text">Add image here</span>
-          <div class="project-overlay"><span class="project-overlay-text">View project →</span></div>
-        </div>
-        <div class="project-info">
-          <div class="project-name">PROJECT 12</div>
-          <div class="project-meta">
-            <span class="project-type">Project type</span>
-            <span class="project-country">Country</span>
-          </div>
-          <p class="project-result">Add a one-line result here.</p>
-        </div>
-      </div>
+      </a>
 
     </div><!-- /portfolio-grid -->
 
     <div class="portfolio-cta reveal">
       <!-- Replace # with your Google Drive PDF link -->
-      <a href="#" target="_blank">View full portfolio PDF (60 pages) →</a>
+      <a href="https://drive.google.com/file/d/1-c0SsZ4p0-8iFly84V37mtww9y-4T5ph/view?usp=sharing" target="_blank">View full portfolio PDF (60 pages) →</a>
     </div>
 
   </div>
@@ -1702,80 +1935,125 @@ footer {
       <!-- REAL TESTIMONIAL — fill in when you receive one -->
       <div class="testimonial-card reveal reveal-delay-1">
         <p class="testimonial-text">
-          "Katrin needed support on an ongoing interior design project. Fernanda delivered
-          high-quality, realistic visuals aligned with our studio's style, along with a
-          structured procurement list that evolved into a reusable template for future projects.
-          Clear communication, on-time delivery, and zero rework."
+          "I came across Fernanda's profile and was immediately impressed by her extensive experience and the quality of her work. We needed someone to help us with a tight deadline, and Fernanda stepped in seamlessly. Her professionalism, attention to detail, and ability to adapt to our workflow made the entire process smooth and efficient. I highly recommend her for any architectural or interior design support — she's a true asset to any team."
         </p>
         <div class="testimonial-author">
           <div class="author-avatar">K</div>
           <div class="author-info">
             <strong>Katrin</strong>
-            <span>Interior Design Studio — Switzerland</span>
+            <span>Concept Interior Designer — Austria</span>
           </div>
         </div>
       </div>
 
       <!-- PLACEHOLDER — replace with real testimonial when available -->
-      <div class="testimonial-placeholder reveal reveal-delay-2">
-        <p>More feedback coming soon.</p>
-        <p style="color: var(--grey); margin-top: 4px;">Worked with Fernanda? Get in touch.</p>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <p class="testimonial-text">
+          "Fernanda brought speed and professionalism to our workflow. Her ability to adapt
+          to our tools and process made everything work seamlessly. She delivered
+          high-quality work and was always open to feedback and revisions."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">T</div>
+          <div class="author-info">
+        <strong>Taylor + Taylor</strong>
+        <span>Architecture & Design — USA</span>
+          </div>
+        </div>
       </div>
 
-      <div class="testimonial-placeholder reveal reveal-delay-3">
-        <p>Placeholder — add your next testimonial here.</p>
+      <!-- SOFIA CLARA — preencha o texto quando receber o depoimento -->
+      <div class="testimonial-card reveal reveal-delay-3">
+        <p class="testimonial-text">
+          "Fernanda has been helping the studio for more than a year now, and I can't imagine how we would manage without her. She's a true collaborator who understands our vision and workflow. Her remote support has been invaluable, especially with organising project management and handling construction documentation."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">SC</div>
+          <div class="author-info">
+            <strong>Sofia Clara</strong>
+            <span>Sofia Clara Interiors & Gardens — Switzerland</span>
+          </div>
+        </div>
       </div>
 
-      <div class="testimonial-placeholder reveal reveal-delay-4">
-        <p>Placeholder — add your next testimonial here.</p>
+      <!-- MARLAN COUTINHO — preencha o texto quando receber o depoimento -->
+      <div class="testimonial-card reveal reveal-delay-4">
+        <p class="testimonial-text">
+          "I had this crazy idea about a perfect outdoor area where I could relax, but also enjoy a nice pool view while I was working home as a professional chef. Fernanda made it happen incredibly fast, and the result was even better than I imagined. She was super responsive, understood my vision right away, and delivered a project that was not only beautiful but also practical and sustainable. I couldn't be happier with the outcome!"
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">MC</div>
+          <div class="author-info">
+            <strong>Marlan Coutinho</strong>
+            <span>Final Client — Brazil</span>
+          </div>
+        </div>
       </div>
 
     </div>
   </div>
 </section>
 
+<!-- ===== START SMALL — after feedback ===== -->
+<section id="pricing" style="background: var(--off-black); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="pricing-standalone reveal">
+    <div class="pricing-standalone-inner">
+      <div class="pricing-headline-wrap">
+        <div class="pricing-arrow-circle-dark">→</div>
+        <div class="pricing-headline-text-dark">START SMALL.<br>SCALE AS YOU GO.</div>
+      </div>
+      <p class="pricing-sub-dark">You don't have to overcommit. Flexible engagement models — let's find what fits your project.</p>
+      <div class="pricing-cards-dark">
+        <div class="pricing-card-dark">
+          <div class="pricing-card-label-dark">Option 01</div>
+          <div class="pricing-card-title-dark">Hourly Blocks</div>
+          <p class="pricing-card-desc-dark">Perfect for ongoing support or one-off tasks. Buy a block of hours and use them as needed — no long-term commitment required.</p>
+          <div class="pricing-card-examples">
+            <span class="pricing-pill-dark">10h block</span>
+            <span class="pricing-pill-dark">20h block</span>
+            <span class="pricing-pill-dark">30h block</span>
+          </div>
+        </div>
+        <div class="pricing-card-dark">
+          <div class="pricing-card-label-dark">Option 02</div>
+          <div class="pricing-card-title-dark">Per-Phase Packages</div>
+          <p class="pricing-card-desc-dark">Scoped to a specific project phase. Predictable scope, predictable delivery — ideal when you know exactly what needs to get done.</p>
+          <div class="pricing-card-examples">
+            <span class="pricing-pill-dark">Concept</span>
+            <span class="pricing-pill-dark">Design Development</span>
+            <span class="pricing-pill-dark">CDs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== CONTACT ===== -->
 <section id="contact">
-  <div class="contact-inner">
-    <div class="contact-left">
-      <p class="section-label reveal"><span class="section-num">07</span> Get in Touch</p>
+  <div class="contact-inner-simple">
+    <div class="contact-top reveal">
+      <p class="section-label"><span class="section-num">07</span> Get in Touch</p>
       <h2 class="contact-headline reveal reveal-delay-1">
-        I'M READY<br>WHEN YOU<br>ARE.
+        I'M READY<br>WHEN YOU ARE.
       </h2>
       <p class="contact-sub reveal reveal-delay-2">
         Tell me about your project, your deadlines, and what's on your plate.
         I'll help you lighten the load — and move forward with confidence.
       </p>
-
-      <div class="contact-details reveal reveal-delay-3">
-        <a class="contact-detail" href="mailto:fernanda.archially@gmail.com">
-          <span class="contact-detail-icon">Email</span>
-          <span class="contact-detail-value">fernanda.archially@gmail.com</span>
-        </a>
-        <a class="contact-detail" href="https://linkedin.com/in/fernanda-freitas-archially" target="_blank">
-          <span class="contact-detail-icon">LinkedIn</span>
-          <span class="contact-detail-value">/fernanda-freitas-archially</span>
-        </a>
-        <a class="contact-detail" href="https://archially.co" target="_blank">
-          <span class="contact-detail-icon">Website</span>
-          <span class="contact-detail-value">archially.co</span>
-        </a>
-        <a class="contact-detail" href="https://wa.me/5532984029992" target="_blank">
-          <span class="contact-detail-icon">WhatsApp</span>
-          <span class="contact-detail-value">+55 (32) 98402-9992</span>
-        </a>
-      </div>
     </div>
 
     <!-- Contact Form — sends via mailto. For form backend, replace action with Formspree URL -->
-    <form class="contact-form reveal reveal-delay-2" id="contactForm">
-      <div class="form-group">
-        <label for="name">Your Name</label>
-        <input type="text" id="name" name="name" placeholder="Studio owner / designer" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="your@studio.com" required>
+    <form class="contact-form reveal reveal-delay-3" id="contactForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Studio owner / designer" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your@studio.com" required>
+        </div>
       </div>
       <div class="form-group">
         <label for="service">What do you need?</label>
@@ -1797,17 +2075,31 @@ footer {
       <button type="submit" class="form-submit">Send message →</button>
     </form>
 
+    <!-- WhatsApp CTA -->
+    <!-- Para configurar a mensagem padrão: edite o texto após "text=" na URL abaixo -->
+    <!-- Exemplo: text=Olá+Fernanda,+gostaria+de+saber+mais+sobre+seus+serviços -->
+    <a class="whatsapp-btn reveal"
+       href="https://wa.me/5532984029992?text=Hi+Fernanda%2C+I+found+your+website+and+would+like+to+know+more+about+your+services."
+       target="_blank"
+       rel="noopener">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+      Prefer WhatsApp? Start a conversation
+    </a>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-brand">ARCHIALLY</div>
-  <p class="footer-copy">© 2025 Fernanda Freitas · your architectural & design ally, anywhere.</p>
+  <p class="footer-copy">© Fernanda Freitas · your architectural & design ally, anywhere.</p>
   <div class="footer-links">
-    <a href="mailto:fernanda.archially@gmail.com">Email</a>
+    <a href="mailto:fernanda.archially@gmail.com">fernanda.archially@gmail.com</a>
+    <a href="https://wa.me/5532984029992" target="_blank">WhatsApp</a>
     <a href="https://linkedin.com/in/fernanda-freitas-archially" target="_blank">LinkedIn</a>
-    <a href="#" target="_blank">Portfolio PDF</a>
+    <a href="https://archially.co" target="_blank">archially.co</a>
+    <a href="https://drive.google.com/file/d/1-c0SsZ4p0-8iFly84V37mtww9y-4T5ph/view?usp=sharing" target="_blank">Portfolio</a>
   </div>
 </footer>
 
