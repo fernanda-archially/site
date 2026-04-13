@@ -1414,10 +1414,74 @@ footer {
   .method-box { padding: 36px 24px; }
   .solution-box { padding: 36px 28px; }
 }
+#successOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8,8,8,0.92);
+  backdrop-filter: blur(8px);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+#successOverlay.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+#overlayBox {
+  background: var(--card-bg);
+  border: 1px solid var(--lime);
+  padding: 56px 48px;
+  max-width: 480px;
+  width: 90%;
+  text-align: center;
+}
+#overlayIcon {
+  font-size: 40px;
+  color: var(--lime);
+  margin-bottom: 20px;
+}
+#overlayBox h2 {
+  font-family: var(--font-display);
+  font-size: 40px;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+#overlayBox p {
+  font-size: 15px;
+  color: var(--grey);
+  line-height: 1.65;
+  margin-bottom: 32px;
+}
+#overlayClose {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--lime);
+  border: none;
+  padding: 12px 28px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#overlayClose:hover { background: #d4ff40; }
 </style>
 </head>
 <body>
-
+<!-- Success Overlay -->
+<div id="successOverlay">
+  <div id="overlayBox">
+    <div id="overlayIcon">✓</div>
+    <h2>Message sent!</h2>
+    <p>Thank you for reaching out. I'll get back to you shortly.</p>
+    <button id="overlayClose">Close</button>
+  </div>
+</div>
 <!-- Custom Cursor -->
 <div class="cursor" id="cursor"></div>
 <div class="cursor-ring" id="cursorRing"></div>
@@ -2110,6 +2174,43 @@ footer {
 
 <!-- ===== JS ===== -->
 <script>
+  // Formulário com overlay de confirmação
+const form = document.getElementById('contactForm');
+const overlay = document.getElementById('successOverlay');
+
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const btn = form.querySelector('.form-submit');
+  btn.textContent = 'Sending…';
+  btn.disabled = true;
+
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      form.reset();
+      overlay.classList.add('visible');
+    } else {
+      btn.textContent = 'Something went wrong — try again';
+      btn.disabled = false;
+    }
+  } catch {
+    btn.textContent = 'Connection error — try again';
+    btn.disabled = false;
+  }
+});
+
+document.getElementById('overlayClose').addEventListener('click', function() {
+  overlay.classList.remove('visible');
+  form.querySelector('.form-submit').textContent = 'Send message →';
+  form.querySelector('.form-submit').disabled = false;
+});
+
 // Custom cursor
 const cursor = document.getElementById('cursor');
 const cursorRing = document.getElementById('cursorRing');
